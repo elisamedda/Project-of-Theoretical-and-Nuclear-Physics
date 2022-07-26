@@ -202,7 +202,7 @@ end
 # parameters for the search
 ϵ = 1e-4; #accuracy
 L_in = 0.0;
-ΔL = 10e-2;#10cm
+ΔL = 1e-2;#1cm
 L_crit_U = find_L_crit(μ_U,η_U,ϵ,L_in,ΔL,t_range);
 L_crit_P = find_L_crit(μ_P,η_P,ϵ,L_in,ΔL,t_range);
 
