@@ -68,6 +68,18 @@ Moreover, since the $3D$ case is physical, we can compute the critical mass of N
 
 $m= \rho V$, where $V=L^3_{crit}$ and $\rho$ is the mass density of the fissile material.
 
-# Bibliography
+###JULIA libraries
+Some libraries are required to run the code correctly:
+* Plots
+*DifferentialEquations:ODEProblem,solve
+*ForwardDiff:derivative
+*DiffEqOperators: CentereDifference, Dirichlet0BC
+*NumericalIntegration: integrate
+*Einsum 
+*LinearAlgebra:eigen
+*Statistics: mean
+
+
+## Bibliography
 
 Graham Griffiths. Neutron diffusion. 02 2018. URL: (https://www.researchgate.net/publication/323035158_Neutron_diffusion).
