@@ -547,7 +547,7 @@ newL_range_sovra = [0.0;L_range_n_Sovra;L_sovra];
 #plot
 Plot_sovra_zero = plot(
     newL_range_sovra*10^2,newL_range_sovra*10^2,newmatrix2, st=:surface,
-    xlabel="x(cm)", ylabel="y(m)", zlabel="n(x,y)",
+    xlabel="x(cm)", ylabel="y(cm)", zlabel="n(x,y)",
     title="Neutron diffusion 3D (²³⁵U)\n at L=$(L_sovra*10^2)cm and Q_max =$Q_max.\nz=$(z_fix_sovra)cm t=$(t_plot)s",
     camera=(24,14),dpi=1000
 )
