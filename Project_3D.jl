@@ -539,7 +539,7 @@ newMatrix = hcat(BC1,n_plot,BC1);
 BC2=zeros(Float64,nx+2);
 newmatrix2 = vcat(BC2',newMatrix, BC2');
 
-newL_range_sovra = [0.0;L_range_n;L_sovra];
+newL_range_sovra = [0.0;L_range_n_Sovra;L_sovra];
 
 #plot
 Plot_sovra_zero = plot(
