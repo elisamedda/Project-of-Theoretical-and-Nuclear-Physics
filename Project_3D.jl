@@ -485,7 +485,7 @@ L = [L_crit_U, L_crit_U, L_crit_U]; #L Vector
 n(t::Float64)= series(f_initial,L,N,μ_U, η_U,t,Q_max);
 
 #take n(t=0) for the plot
-t_plot = 0.;
+t_plot = 0.0;
 n_t = n(t_plot);
 
 L_range_n = range(0.,L_crit_U,nx);
@@ -504,8 +504,8 @@ newL_range = [0.0;L_range_n;L_crit_U];
 
 #plot
 Plot_zero = plot(
-    newL_range,newL_range,newmatrix2, st=:surface,
-    xlabel="x(m)", ylabel="y(m)", zlabel="n(x,y)",
+    newL_range*10^2,newL_range*10^2,newmatrix2, st=:surface,
+    xlabel="x(cm)", ylabel="y(cm)", zlabel="n(x,y)",
     title="Neutron diffusion 3D (²³⁵U)\n at L=$(L_crit_U*10^2)cm and Q_max =$Q_max.\nz=$(z_fix)cm t=$(t_plot)s",
      camera=(24,14),dpi=1000
 )
@@ -546,18 +546,21 @@ newL_range_sovra = [0.0;L_range_n_Sovra;L_sovra];
 
 #plot
 Plot_sovra_zero = plot(
-    newL_range_sovra,newL_range_sovra,newmatrix2, st=:surface,
-    xlabel="x(m)", ylabel="y(m)", zlabel="n(x,y)",
+    newL_range_sovra*10^2,newL_range_sovra*10^2,newmatrix2, st=:surface,
+    xlabel="x(cm)", ylabel="y(m)", zlabel="n(x,y)",
     title="Neutron diffusion 3D (²³⁵U)\n at L=$(L_sovra*10^2)cm and Q_max =$Q_max.\nz=$(z_fix_sovra)cm t=$(t_plot)s",
     camera=(24,14),dpi=1000
 )
 savefig(Plot_sovra_zero, "N3D_sovra_tzero.pdf");#save the fig
 
+
+
+
 #### now sovra-critical at a later time
 
 #take n(t>0) for the plot
-t_plot = 1e-7;
-n_t_sovra = n(t_plot);
+t_plot_sovra_t = 1e-7;#s
+n_t_sovra = n_sovra(t_plot_sovra_t);
 
 L_range_n_sovra_t= range(0.,L_sovra,nx);
 z_fix_sovra_t = round(L_range_n_sovra_t[50], digits=4)*10^2 #cm
@@ -574,8 +577,8 @@ newL_range_sovra_t = [0.0;L_range_n_sovra_t;L_sovra];
 
 #plot
 Plot_sovra_late = plot(
-    newL_range_sovra_t,newL_range_sovra_t,newmatrix_sovra_t, st=:surface,
-    xlabel="x(m)", ylabel="y(m)", zlabel="n(x,y)",
+    newL_range_sovra_t*10^2,newL_range_sovra_t*10^2,newmatrix_sovra_t, st=:surface,
+    xlabel="x(cm)", ylabel="y(cm)", zlabel="n(x,y)",
     title="Neutron diffusion 3D (²³⁵U)\n at L=$(L_sovra*10^2)cm and Q_max =$Q_max.\nz=$(z_fix_sovra_t)cm, t=1e-7s",
      camera=(24,14),dpi=1000
 )
