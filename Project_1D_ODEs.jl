@@ -345,7 +345,7 @@ Plot_L1 = partial_sol_plots(L_crit_U);
 Plot_L2 = partial_sol_plots(0.10);
 Plot_L3 = partial_sol_plots(0.12);
 Plot_final = plot(Plot_L1, Plot_L2,Plot_L3, layout = (2,2))
-
+savefig(Plot_final, "Derivative_study.pdf")
 #=
 now we want the plot of the diffusion. Then, we will need to expand 
 a function in terms of the solution eigenvectors
