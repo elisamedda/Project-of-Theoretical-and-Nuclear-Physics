@@ -1,4 +1,4 @@
-# Project of Theoretical and Nuclear Physics: 
+# Project of Theoretical and NUmerical Nuclear Physics: 
 
 In this project, we develop a code to calculate the critical length $L_{crit}$, in order to study an unbounded nuclear diffusion in a fissile material.
 The result is a runaway nuclear reaction that can lead to an intense explosion. For simplicity we based our calculations upon simplified Dirichlet 
