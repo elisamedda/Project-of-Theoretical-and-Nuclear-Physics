@@ -467,6 +467,7 @@ end
 ########
 
 #initial function
+#initial function
 f_initial(
     x::Float64,
     y::Float64,
@@ -512,22 +513,22 @@ savefig(Plot_zero, "N3D_tzero.pdf");#save the fig
 L_sovra = 21.e-2 #m
 
 #initial function
-f_initial(
+f_initial_sovra(
     x::Float64,
     y::Float64,
     z::Float64
 ) = sin(π*x/L_sovra)*sin(π*y/L_sovra)*sin(π*z/L_sovra); #initial function 
 
-L = [L_sovra, L_sovra, L_sovra]; #L Vector
+L_Sovra = [L_sovra, L_sovra, L_sovra]; #L Vector
 
 
 #calculation of n
-n(t::Float64)= series(f_initial,L,N,μ_U, η_U,t,Q_max);
+n(t::Float64)= series(f_initial_sovra,L_Sovra,N,μ_U, η_U,t,Q_max);
 
 #take n(t=0) for the plot
 n_t = n(0.0);
 
-L_range_n = range(0.,L_sovra,nx);
+L_range_n_Sovra = range(0.,L_sovra,nx);
 
 #fix the z-axis to z=50 for the plot
 n_plot = n_t[:,:,50];  
@@ -538,11 +539,11 @@ newMatrix = hcat(BC1,n_plot,BC1);
 BC2=zeros(Float64,nx+2);
 newmatrix2 = vcat(BC2',newMatrix, BC2');
 
-newL_range = [0.0;L_range_n;L_sovra];
+newL_range_sovra = [0.0;L_range_n;L_sovra];
 
 #plot
 Plot_sovra_zero = plot(
-    newL_range,newL_range,newmatrix2, st=:surface,
+    newL_range_sovra,newL_range_sovra,newmatrix2, st=:surface,
     xlabel="x(m)", ylabel="t(μs)", zlabel="n(x,t)",
     title="Neutron diffusion 3D (²³⁵U)\n at L=$(L_sovra*10^2)cm and Q_max =$Q_max",
      camera=(24,14),dpi=1000
@@ -552,24 +553,24 @@ savefig(Plot_sovra_zero, "N3D_sovra_tzero.pdf");#save the fig
 #### now sovra-critical at a later time
 
 #take n(t>0) for the plot
-n_t = n(1e-7);
+n_t_sovra = n(1e-7);
 
 L_range_n = range(0.,L_sovra,nx);
 
 #fix the z-axis to z=50 for the plot
-n_plot = n_t[:,:,50];  
+n_plot_sovra = n_t_sovra[:,:,50];  
 
 #we need to add back the boundaries on x and y
 BC1=zeros(Float64,nx);
-newMatrix = hcat(BC1,n_plot,BC1);
+newMatrix_sovra = hcat(BC1,n_plot_sovra,BC1);
 BC2=zeros(Float64,nx+2);
-newmatrix2 = vcat(BC2',newMatrix, BC2');
+newmatrix_sovra= vcat(BC2',newMatrix_sovra, BC2');
 
 newL_range = [0.0;L_range_n;L_sovra];
 
 #plot
 Plot_sovra_late = plot(
-    newL_range,newL_range,newmatrix2, st=:surface,
+    newL_range,newL_range,newmatrix_sovra, st=:surface,
     xlabel="x(m)", ylabel="t(μs)", zlabel="n(x,t)",
     title="Neutron diffusion 3D (²³⁵U)\n at L=$(L_sovra*10^2)cm and Q_max =$Q_max",
      camera=(24,14),dpi=1000
