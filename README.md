@@ -67,3 +67,7 @@ with $\alpha = \alpha_x+\alpha_y+\alpha_z$.
 Moreover, since the $3D$ case is physical, we can compute the critical mass of Nuclear weapons:
 
 $m= \rho V$, where $V=L^3_{crit}$ and $\rho$ is the mass density of the fissile material.
+
+# Bibliography
+
+Graham Griffiths. Neutron diffusion. 02 2018. URL: (https://www.researchgate.net/publication/323035158_Neutron_diffusion).
