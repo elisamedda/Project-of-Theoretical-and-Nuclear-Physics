@@ -525,11 +525,11 @@ L_Sovra = [L_sovra, L_sovra, L_sovra]; #L Vector
 
 
 #calculation of n
-n(t::Float64)= series(f_initial_sovra,L_Sovra,N,μ_U, η_U,t,Q_max);
+n_sovra(t::Float64)= series(f_initial_sovra,L_Sovra,N,μ_U, η_U,t,Q_max);
 
 #take n(t=0) for the plot
 t_plot = 0.;
-n_t = n(t_plot);
+n_t = n_sovra(t_plot);
 
 L_range_n_Sovra = range(0.,L_sovra,nx);
 z_fix_sovra=round(L_range_n_Sovra[50],digits=4)*10^2#cm
@@ -559,8 +559,8 @@ savefig(Plot_sovra_zero, "N3D_sovra_tzero.pdf");#save the fig
 t_plot = 1e-7;
 n_t_sovra = n(t_plot);
 
-L_range_n = range(0.,L_sovra,nx);
-z_fix_sovra_t = round(L_range_n[50], digits=4)*10^2 #cm
+L_range_n_sovra_t= range(0.,L_sovra,nx);
+z_fix_sovra_t = round(L_range_n_sovra_t[50], digits=4)*10^2 #cm
 #fix the z-axis to z=50 for the plot
 n_plot_sovra = n_t_sovra[:,:,50];  
 
@@ -568,13 +568,13 @@ n_plot_sovra = n_t_sovra[:,:,50];
 BC1=zeros(Float64,nx);
 newMatrix_sovra = hcat(BC1,n_plot_sovra,BC1);
 BC2=zeros(Float64,nx+2);
-newmatrix_sovra= vcat(BC2',newMatrix_sovra, BC2');
+newmatrix_sovra_t = vcat(BC2',newMatrix_sovra, BC2');
 
-newL_range = [0.0;L_range_n;L_sovra];
+newL_range_sovra_t = [0.0;L_range_n_sovra_t;L_sovra];
 
 #plot
 Plot_sovra_late = plot(
-    newL_range,newL_range,newmatrix_sovra, st=:surface,
+    newL_range_sovra_t,newL_range_sovra_t,newmatrix_sovra_t, st=:surface,
     xlabel="x(m)", ylabel="y(m)", zlabel="n(x,y)",
     title="Neutron diffusion 3D (²³⁵U)\n at L=$(L_sovra*10^2)cm and Q_max =$Q_max.\nz=$(z_fix_sovra_t)cm, t=1e-7s",
      camera=(24,14),dpi=1000
